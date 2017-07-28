@@ -5,7 +5,7 @@ env_abbr=p
 for N in 1 2 3 
 do
 
-NODE=EHT-KAFKA-P0$N
+NODE=EHT-KAFKA-${env_abbr}0$N
 
 #copy rpms
 scp kafka.rpm zookeeper.rpm $NODE:/root
@@ -22,7 +22,7 @@ scp myid $NODE:/var/zookeeper/myid
 rm -f myid
 
 #copy server properties
-cat server.properties | sed s/%ID%/$N/ > server.properties.tmp
+cat server.properties | sed s/%ID%/$N/ | sed s/%ENV%/$env_abbr/g > server.properties.tmp
 scp server.properties.tmp $NODE:/etc/kafka/server.properties
 rm -f server.properties.tmp
 
@@ -33,9 +33,10 @@ rm -f zoo.cfg.tmp
 
 done
 
+#enable and start services
 for N in 1 2 3
 do
-#enable and start services
+NODE=EHT-KAFKA-${env_abbr}0$N
 ssh $NODE systemctl enable zookeeper
 ssh $NODE systemctl start zookeeper
 ssh $NODE systemctl enable kafka
