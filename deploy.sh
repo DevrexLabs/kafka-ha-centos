@@ -13,6 +13,7 @@ ssh $NODE mkdir /opt/kafka /opt/zookeeper /var/kafka /var/zookeeper
 
 ssh $NODE yum install kafka.rpm -y
 ssh $NODE yum install zookeeper.rpm -y
+ssh $NODE yum install java-1.8.0-openjdk.x86_64 -y
 ssh $NODE chown kafka:kafka /var/kafka
 ssh $NODE chown zookeeper:zookeeper /var/zookeeper
 
