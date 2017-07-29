@@ -32,14 +32,8 @@ cat zoo.cfg | sed s/%ENV%/$env_abbr/g > zoo.cfg.tmp
 scp zoo.cfg.tmp $NODE:/etc/zookeeper/zoo.cfg
 rm -f zoo.cfg.tmp
 
-done
+# enable and start services
+ssh $NODE systemctl enable zookeeper kafka
+ssh $NODE systemctl start zookeeper kafka
 
-#enable and start services
-for N in 1 2 3
-do
-NODE=EHT-KAFKA-${env_abbr}0$N
-ssh $NODE systemctl enable zookeeper
-ssh $NODE systemctl start zookeeper
-ssh $NODE systemctl enable kafka
-ssh $NODE systemctl start kafka
 done
