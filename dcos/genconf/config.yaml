@@ -22,6 +22,6 @@ resolvers:
 ssh_port: 22
 ssh_user: root
 enable_docker_gc: 'true'
-ip_detect_public_filename: 'ipdetect-public'
+ip_detect_public_filename: 'genconf/ipdetect-public'
 oauth_enabled: 'false'
 process_timeout: 12000

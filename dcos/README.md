@@ -20,6 +20,8 @@ Modify the config.yaml script, specifically:
 * Consider oauth
 * Consider dns resolvers, default is google dns
 
+Edit the genconf/ipdetect-public script to return the IP of the master nodes LB
+
 ## Steps
 * Run the genconf/ipdetect script and ensure it returns the ip of the default ethernet interface
 * Run the genconf/ipdetect-public script and ensure it returns the public ip of the default ethernet interface
